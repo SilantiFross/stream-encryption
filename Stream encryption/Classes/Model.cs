@@ -7,7 +7,7 @@ using Stream_encryption.Properties;
 
 namespace Stream_encryption.Classes
 {
-    class Model
+    internal static class Model
     { 
 
         //This function returns a string consisting of the binary contents of the file.
@@ -21,8 +21,8 @@ namespace Stream_encryption.Classes
             if (openFileDialog.ShowDialog() != DialogResult.OK) return ("File not opened! Try again.");
             try
             {
-                List<byte> bytesOriginalText = new List<byte>();
-                BinaryReader contentFile = new BinaryReader((File.Open(openFileDialog.FileName, FileMode.Open)));
+                var bytesOriginalText = new List<byte>();
+                var contentFile = new BinaryReader((File.Open(openFileDialog.FileName, FileMode.Open)));
 
                 while (contentFile.BaseStream.Position <= contentFile.BaseStream.Length - 1)
                     bytesOriginalText.Add(contentFile.ReadByte());    
@@ -54,9 +54,9 @@ namespace Stream_encryption.Classes
             bw.Close();
         }
 
-        public static int KeyUp(TextBox textBoxLFSR)
+        public static int KeyUp(TextBox textBoxLfsr)
         {
-            return textBoxLFSR.Text.Length;
+            return textBoxLfsr.Text.Length;
         }
 
         public static bool IsBinaryNumber(char key)

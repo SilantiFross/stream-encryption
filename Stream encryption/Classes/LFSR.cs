@@ -2,47 +2,47 @@
 
 namespace Stream_encryption.Classes
 {
-    class LFSR
+    internal class Lfsr
     {
-        private readonly List<byte> linearShiftRegister = new List<byte>();
+        private readonly List<byte> _linearShiftRegister = new List<byte>();
 
-        public LFSR(string initialStateLFSR, int sizeLFSR)
+        public Lfsr(string initialStateLfsr, int sizeLfsr)
         {
-            GetInitalStateInList(initialStateLFSR, sizeLFSR);
+            GetInitalStateInList(initialStateLfsr, sizeLfsr);
         }
 
-        public List<byte> OperationWithRegister(int sizeOriginalText, int itemForXOR, int sizeLinearShiftRegister)
+        public List<byte> OperationWithRegister(int sizeOriginalText, int itemForXor, int sizeLinearShiftRegister)
         {
-            List<byte> key = new List<byte>();
-            int lastElementLFSR = linearShiftRegister.Count;
+            var key = new List<byte>();
+            int lastElementLfsr = _linearShiftRegister.Count;
 
             for (int positionInOriginalText = 0; positionInOriginalText <= sizeOriginalText; positionInOriginalText++)
             {
-                key.Add(linearShiftRegister[0]);
+                key.Add(_linearShiftRegister[0]);
 
-                var valueAfterXOR = linearShiftRegister[0] ^ linearShiftRegister[sizeLinearShiftRegister - itemForXOR];
+                var valueAfterXor = _linearShiftRegister[0] ^ _linearShiftRegister[sizeLinearShiftRegister - itemForXor];
 
-                for (int elementLFSR = 0; elementLFSR <= lastElementLFSR - 2; elementLFSR++)
+                for (int elementLfsr = 0; elementLfsr <= lastElementLfsr - 2; elementLfsr++)
                 {
-                    linearShiftRegister[elementLFSR] = linearShiftRegister[elementLFSR + 1];
+                    _linearShiftRegister[elementLfsr] = _linearShiftRegister[elementLfsr + 1];
                 }
 
-                linearShiftRegister[sizeLinearShiftRegister - 1] = (byte)valueAfterXOR;
+                _linearShiftRegister[sizeLinearShiftRegister - 1] = (byte)valueAfterXor;
             }
 
             return key;
         }
 
-        private void GetInitalStateInList(string initialStateLFSR, int sizeLFSR)
+        private void GetInitalStateInList(string initialStateLfsr, int sizeLfsr)
         {
-            if (initialStateLFSR.Length == sizeLFSR)
+            if (initialStateLfsr.Length == sizeLfsr)
             {
-                for (int elementLFSR = 0; elementLFSR < sizeLFSR; elementLFSR++)
-                    linearShiftRegister.Add(initialStateLFSR[elementLFSR] == '1' ? (byte)1 : (byte)0);
+                for (int elementLfsr = 0; elementLfsr < sizeLfsr; elementLfsr++)
+                    _linearShiftRegister.Add(initialStateLfsr[elementLfsr] == '1' ? (byte)1 : (byte)0);
             }
             else
-                for (int elementLFSR = 0; elementLFSR < sizeLFSR; elementLFSR++)
-                    linearShiftRegister.Add(0);
+                for (int elementLfsr = 0; elementLfsr < sizeLfsr; elementLfsr++)
+                    _linearShiftRegister.Add(0);
         }
 
     }

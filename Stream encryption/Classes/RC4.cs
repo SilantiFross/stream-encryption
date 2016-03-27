@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace Stream_encryption
+namespace Stream_encryption.Classes
 {
-    class RC4
+    class Rc4
     {
 
         private readonly List<byte> _state = new List<byte>();
 
-        public RC4(List<byte> primaryKey)
+        public Rc4(List<byte> primaryKey)
         {
             for (int elementInState = 0; elementInState < 256; elementInState++)
                 _state.Add((byte)elementInState);

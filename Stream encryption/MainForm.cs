@@ -84,7 +84,7 @@ namespace Stream_encryption
 
                 originalText = Controller.OriginalTextInBits(textBoxInput.Text);
 
-                LFSR lfsrOne = new LFSR(textBoxLSFR1.Text, sizeLinearShiftRegisterOne);
+                Lfsr lfsrOne = new Lfsr(textBoxLSFR1.Text, sizeLinearShiftRegisterOne);
                 key = lfsrOne.OperationWithRegister(originalText.Count, itemForXOROne, sizeLinearShiftRegisterOne);
                 cipherText = Controller.Encryption(originalText, key);
 
@@ -104,9 +104,9 @@ namespace Stream_encryption
 
                 originalText = Controller.OriginalTextInBits(textBoxInput.Text);
 
-                LFSR lfsrOne = new LFSR(textBoxLSFR1.Text, sizeLinearShiftRegisterOne);
-                LFSR lfsrTwo = new LFSR(textBoxLFSR2.Text, sizeLinearShiftRegisterTwo);
-                LFSR lfsrThree = new LFSR(textBoxLFSR3.Text, sizeLinearShiftRegisterThree);
+                Lfsr lfsrOne = new Lfsr(textBoxLSFR1.Text, sizeLinearShiftRegisterOne);
+                Lfsr lfsrTwo = new Lfsr(textBoxLFSR2.Text, sizeLinearShiftRegisterTwo);
+                Lfsr lfsrThree = new Lfsr(textBoxLFSR3.Text, sizeLinearShiftRegisterThree);
 
                 var keyOne = lfsrOne.OperationWithRegister(originalText.Count, itemForXOROne, sizeLinearShiftRegisterOne);
                 var keyTwo = lfsrTwo.OperationWithRegister(originalText.Count, itemForXORTwo, sizeLinearShiftRegisterTwo);
@@ -126,7 +126,7 @@ namespace Stream_encryption
             }
             else if (radioButtonRC4.Checked)
             {
-                RC4 rc4 = new RC4(Controller.GetNumbersFromString(textBoxRC4Key.Text));
+                Rc4 rc4 = new Rc4(Controller.GetNumbersFromString(textBoxRC4Key.Text));
 
                 originalText = Controller.OriginalTextInBytes(textBoxInput.Text);
 
